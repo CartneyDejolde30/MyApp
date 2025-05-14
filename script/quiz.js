@@ -179,17 +179,23 @@ let correctAnswer = document.getElementById('correct-answer');
 let userAnswers = [];
 
 
-function yourAnswer(){
+function yourAnswer() {
     correctAnswer.style.display = 'block';
 
-    for(let i = 0; i < quiz.length; i++){
+    for (let i = 0; i < quiz.length; i++) {
         let span = document.createElement('p');
-        span.innerHTML = `
-                 <b>Q${i+1}:</b> ${quiz[i].question}<br>
-                 <b>Correct Answer:</b> ${quiz[i][quiz[i].correct]} <br>
-                 <b>Your Answer:</b> ${quiz[i][userAnswers[i]] || 'No answer'}
-            <hr>
-        `;
+
+        let questionText = `<b>Q${i + 1}:</b> ${quiz[i].question}<br>`;
+        let correctText = `<b>Correct Answer:</b> ${quiz[i][quiz[i].correct]}<br>`;
+
+        let userAnswerText = '';
+        if (userAnswers[i] === quiz[i].correct) {
+            userAnswerText = `<b>✅ Your Answer:</b> ${quiz[i][userAnswers[i]] || 'No answer'}`;
+        } else {
+            userAnswerText = `<b>❌ Your Answer:</b> ${quiz[i][userAnswers[i]] || 'No answer'}`;
+        }
+
+        span.innerHTML = questionText + correctText + userAnswerText + `<hr>`;
         correctAnswer.appendChild(span);
     }
 }
