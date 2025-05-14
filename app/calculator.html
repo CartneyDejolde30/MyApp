@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../style/calc.css">
+</head>
+<body>
+    <div class="container">
+        <h3>Calculator</h3>
+        <div class="span">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+        </div>
+        <input type="text" placeholder="0" id="input-box">
+        <div class="calc">
+            <button class="op">AC</button>
+            <button class="op">DEL</button>
+            <button class="op">%</button>
+            <button class="op">/</button>
+        </div>
+        <div class="calc">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="op">*</button>
+        </div>
+        <div class="calc">
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="op">-</button>
+        </div>
+        <div class="calc">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="op">+</button>
+        </div>
+        <div class="calc">
+            <button>0</button>
+            <button>00</button>
+            <button>.</button>
+            <button class="op">=</button>
+        </div>
+    </div>
+
+
+    <script>
+        let inpt = document.getElementById('input-box');
+        let btn = document.querySelectorAll('button');
+        let string = "";
+
+        let arr = Array.from(btn);
+        arr.forEach(btn =>{
+            btn.addEventListener('click',(e)=>{
+                if(e.target.innerHTML === '='){
+                    string = eval(string);
+                    inpt.value = string;
+                }
+                else if(e.target.innerHTML === 'AC'){
+                    string = "";
+                    inpt.value = string;
+                }
+                else if(e.target.innerHTML === 'DEL'){
+                    string = string.substring(0, string.length - 1);
+                    inpt.value = string;
+                }
+                else{
+                    string += e.target.innerHTML;
+                    inpt.value = string;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

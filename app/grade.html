@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading System</title>
+    <link rel="stylesheet" href="../style/grade.css">
+</head>
+<body>
+    <div class="container">
+        <h3>Grading System</h3>
+        <div class="div">
+           <div class="form-group">
+             <label for="">Math</label>
+             <input type="number" id="math">
+           </div>
+            <div class="form-group">
+             <label for="">Science</label>
+             <input type="number" id="science">
+           </div>
+            <div class="form-group">
+             <label for="">English</label>
+             <input type="number" id="english">
+           </div>
+            <div class="form-group">
+             <label for="">Filipino</label>
+             <input type="number" id="filipino">
+           </div>
+            <div class="form-group">
+             <label for="">Programming</label>
+             <input type="number" id="programming">
+           </div>
+           <div class="btn">
+            <button id="btn">Submit</button>
+           </div>
+           <div class="av">
+            <p id="avg">0</p>
+            <p id="text"></p>
+           </div>
+        </div>
+    </div>
+
+    
+   
+
+    <script>
+        let subject = ["math","english","science","filipino","programming"];
+        let btn = document.getElementById("btn");
+        let avg = document.getElementById('avg');
+        let txt = document.getElementById('text');
+
+
+        btn.addEventListener("click",()=>{
+         let total = 0;
+            for(let id of subject){
+            total += Number(document.getElementById(id).value);   
+            }
+            let average = total / subject.length;
+            avg.innerHTML = average;
+             for (let id of subject) {
+                document.getElementById(id).value = "";
+    }
+
+            if (average > 100){
+                avg.style.border = "3px solid red";
+                txt.innerHTML = "Your Grade is Invalid!";
+                avg.style.boxShadow = "0px 0px 5px red"
+            }else if(average < 75){
+                avg.style.border = "3px solid red";
+                txt.innerHTML = "Your Grade is Failed!";
+                avg.style.boxShadow = "0px 0px 5px red"
+            }else if(average >= 98){
+                avg.style.border = "3px solid blue";
+                txt.innerHTML = "Congrats! With Highest Honor";
+                avg.style.boxShadow = "0px 0px 5px blue"
+            }
+            else if(average >= 95){
+                avg.style.border = "3px solid blue";
+                txt.innerHTML = "Congrats! With High Honor"
+                avg.style.boxShadow = "0px 0px 5px blue"
+            }
+            else if(average >= 90){
+                avg.style.border = "3px solid blue";
+                txt.innerHTML = "Congrats! With Honor"
+                avg.style.boxShadow = "0px 0px 5px blue"
+            }
+            else if(average >= 75){
+                avg.style.border = "4px solid yellow";
+                avg.style.boxShadow = "0px 0px 5px yellow"
+                txt.innerHTML = "Passed Grade"
+            }
+          
+        });
+    </script>
+</body>
+</html>
